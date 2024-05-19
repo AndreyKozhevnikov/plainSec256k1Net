@@ -9,10 +9,10 @@ public class Sec256Calculator {
     }
     //  public static BigInteger primeModulus = BigInteger.Pow(2, 256) - BigInteger.Pow(2, 32) - BigInteger.Pow(2, 9) - BigInteger.Pow(2, 8) - BigInteger.Pow(2, 7) - BigInteger.Pow(2, 6) - BigInteger.Pow(2, 4) - 1;
     public BigInteger primeModulus;
-    Tuple<BigInteger, BigInteger> G;
+    public Tuple<BigInteger, BigInteger> G;
 
     public Tuple<BigInteger, BigInteger> GetPublicKeyPoint(byte[] privateKey) {
-        Array.Reverse(privateKey);
+        //Array.Reverse(privateKey);
 
         var fullPrivateKey = new byte[33];
         fullPrivateKey[32] = 0x0;
@@ -22,12 +22,7 @@ public class Sec256Calculator {
         var publicKeyPoint = Multiply(k, G);
         return publicKeyPoint;
     }
-    public byte[] GetCompressedPublicKey(byte[] privateKey) {
-        // generator point (the starting point on the curve used for all calculations)
-
-
-        var publicKeyPoint = GetPublicKeyPoint(privateKey);
-
+    public byte[] GetCompressedPublicKeyFromPoint(Tuple<BigInteger, BigInteger> publicKeyPoint) {
         var publicKeyArray = publicKeyPoint.Item1.ToByteArray();
         var compressed_public_key = new byte[33];
         if(publicKeyPoint.Item2 % 2 == 0) {
@@ -39,6 +34,14 @@ public class Sec256Calculator {
         Array.Reverse(compressed_public_key);
 
         return compressed_public_key;
+    }
+    public byte[] GetCompressedPublicKey(byte[] privateKey) {
+        // generator point (the starting point on the curve used for all calculations)
+
+
+        var publicKeyPoint = GetPublicKeyPoint(privateKey);
+
+        return GetCompressedPublicKeyFromPoint(publicKeyPoint);
     }
 
 

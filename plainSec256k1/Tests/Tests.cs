@@ -3,50 +3,25 @@ using plainSec256k1;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace plainSec256k1.Tests;
 [TestFixture]
 public class Tests {
-    [Test]
-    public void GetPublicKeyWithNative() {
-        byte[] intBytes = BitConverter.GetBytes(3);
 
-
-        Array.Reverse(intBytes);
-        byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
-
-        //Array.Reverse(privateKeyBytes);
-        //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
-
-        //BigInteger number66 = BigInteger.Multiply(number65, 2);
-        var res = new Sec256Calculator().GetCompressedPublicKey(privateKeyBytes);
-        var compressed_public_key_st = Convert.ToHexString(res).ToLower();
-
-
-        Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st);
-    }
 
     [Test]
     public void GetPublicKeyWithNative_1() {
         byte[] intBytes = BitConverter.GetBytes(11);
 
 
-        Array.Reverse(intBytes);
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
-        //Array.Reverse(privateKeyBytes);
-        //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
-
-        //BigInteger number66 = BigInteger.Multiply(number65, 2);
         var res = new Sec256Calculator().GetCompressedPublicKey(privateKeyBytes);
         var compressed_public_key_st = Convert.ToHexString(res).ToLower();
-
 
         Assert.AreEqual("03774ae7f858a9411e5ef4246b70c65aac5649980be5c17891bbec17895da008cb", compressed_public_key_st);
     }
@@ -55,10 +30,8 @@ public class Tests {
         byte[] intBytes = BitConverter.GetBytes(3464879846);
 
 
-        Array.Reverse(intBytes);
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
         //Array.Reverse(privateKeyBytes);
         //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
@@ -75,10 +48,8 @@ public class Tests {
         byte[] intBytes = BitConverter.GetBytes(1234);
 
 
-        Array.Reverse(intBytes);
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
         //Array.Reverse(privateKeyBytes);
         //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
@@ -95,10 +66,8 @@ public class Tests {
         byte[] intBytes = BitConverter.GetBytes(235);
 
 
-        Array.Reverse(intBytes);
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
         //Array.Reverse(privateKeyBytes);
         //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
@@ -115,10 +84,8 @@ public class Tests {
         byte[] intBytes = BitConverter.GetBytes(56);
 
 
-        Array.Reverse(intBytes);
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
         //Array.Reverse(privateKeyBytes);
         //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
@@ -135,10 +102,8 @@ public class Tests {
         byte[] intBytes = BitConverter.GetBytes(123);
 
 
-        Array.Reverse(intBytes);
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
         //Array.Reverse(privateKeyBytes);
         //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
@@ -155,10 +120,8 @@ public class Tests {
         byte[] intBytes = BitConverter.GetBytes(2125123);
 
 
-        Array.Reverse(intBytes);
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
         //Array.Reverse(privateKeyBytes);
         //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
@@ -177,15 +140,8 @@ public class Tests {
         byte[] privateKeyBytes = Convert.FromHexString("FF80A7C177E8C2444DEE3C2B5AAC6688761DDB49BCD03124F8B10541547C90EB");
 
 
-        //Array.Reverse(intBytes);
-        //byte[] privateKeyBytes = new byte[32];
-        //var dest = 32 - intBytes.Length;
-        //Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
-
-        //Array.Reverse(privateKeyBytes);
-        //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
-
-        //BigInteger number66 = BigInteger.Multiply(number65, 2);
+        Array.Reverse(privateKeyBytes);
+     
         var res = new Sec256Calculator().GetCompressedPublicKey(privateKeyBytes);
         var compressed_public_key_st = Convert.ToHexString(res).ToLower();
 
@@ -197,15 +153,8 @@ public class Tests {
         byte[] privateKeyBytes = Convert.FromHexString("D3633F2569C83366B5AE8C84CD76B2B493600D60A23157B98495C48CCC916BB3");
 
 
-        //Array.Reverse(intBytes);
-        //byte[] privateKeyBytes = new byte[32];
-        //var dest = 32 - intBytes.Length;
-        //Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
-
-        //Array.Reverse(privateKeyBytes);
-        //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
-
-        //BigInteger number66 = BigInteger.Multiply(number65, 2);
+        Array.Reverse(privateKeyBytes);
+      
         var res = new Sec256Calculator().GetCompressedPublicKey(privateKeyBytes);
         var compressed_public_key_st = Convert.ToHexString(res).ToLower();
 
@@ -216,24 +165,85 @@ public class Tests {
 
 
     [Test]
-    public void TestCaseToDelete() {
+    public void AddOperationProducesRightKey() {
+        byte[] int3Bytes = BitConverter.GetBytes(3);
+
+        byte[] privateKey3Bytes = new byte[32];
+        Array.Copy(int3Bytes, privateKey3Bytes, int3Bytes.Length);
+
+        var calc = new Sec256Calculator();
+        var publicKeyPoint3 = calc.GetPublicKeyPoint(privateKey3Bytes);
+        var publicKey3 = calc.GetCompressedPublicKeyFromPoint(publicKeyPoint3);
+        var compressed_public_key_st_3 = Convert.ToHexString(publicKey3).ToLower();
+
+        Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st_3);
+
+
+        var publicKeyPoint4 = calc.Add(publicKeyPoint3, calc.G);
+        var publicKey4 = calc.GetCompressedPublicKeyFromPoint(publicKeyPoint4);
+        var compressed_public_key_st_4 = Convert.ToHexString(publicKey4).ToLower();
+
+        Assert.AreEqual("02e493dbf1c10d80f3581e4904930b1404cc6c13900ee0758474fa94abe8c4cd13", compressed_public_key_st_4);
+
+    }
+
+
+
+    [Test]
+    public void GetPublicKeyWithNative() {
         byte[] intBytes = BitConverter.GetBytes(3);
-
-
-        Array.Reverse(intBytes);
+        
         byte[] privateKeyBytes = new byte[32];
-        var dest = 32 - intBytes.Length;
-        Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
 
-        //Array.Reverse(privateKeyBytes);
-        //var tst = BitConverter.ToInt32(privateKeyBytes, 0);
-
-        //BigInteger number66 = BigInteger.Multiply(number65, 2);
         var res = new Sec256Calculator().GetCompressedPublicKey(privateKeyBytes);
+
+        var compressed_public_key_st = Convert.ToHexString(res).ToLower();
+        Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st);
+    }
+
+    //[Test]
+    //public void TestDelete() {
+    //    byte[] intBytes = BitConverter.GetBytes(3);
+
+
+    //    Array.Reverse(intBytes);
+    //    byte[] privateKeyBytes = new byte[32];
+    //    var dest = 32 - intBytes.Length;
+    //    Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+    //    var calc = new Sec256Calculator();
+
+    //    var st0 = calc.Add(calc.G, calc.G);
+    //    var st1 = calc.Add(st0, calc.G);
+    //    var st2 = calc.Add(st1, calc.G);
+    //    var st3 = calc.Add(st2, calc.G);
+
+
+
+
+    //    var res0 = calc.GetPublicKeyPoint(privateKeyBytes);
+    //    var res = calc.GetCompressedPublicKeyFromPoint(res0);
+
+
+    //    var compressed_public_key_st = Convert.ToHexString(res).ToLower();
+
+
+    //    Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st);
+    //}
+    [Test]
+    public void GetPublicKeyWithNative_10() {
+        byte[] intBytes = BitConverter.GetBytes(4);
+
+
+        byte[] privateKeyBytes = new byte[32];
+        Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
+        var calc = new Sec256Calculator();
+        var res0 = calc.GetPublicKeyPoint(privateKeyBytes);
+        var res = calc.GetCompressedPublicKeyFromPoint(res0);
         var compressed_public_key_st = Convert.ToHexString(res).ToLower();
 
 
-        Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st);
+        Assert.AreEqual("02e493dbf1c10d80f3581e4904930b1404cc6c13900ee0758474fa94abe8c4cd13", compressed_public_key_st);
     }
 
 }
