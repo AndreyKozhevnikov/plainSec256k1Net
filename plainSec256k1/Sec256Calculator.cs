@@ -3,13 +3,15 @@ using System.Numerics;
 
 namespace plainSec256k1;
 public class Sec256Calculator {
-
+    public Sec256Calculator() {
+        primeModulus = BigInteger.Parse("115792089237316195423570985008687907853269984665640564039457584007908834671663");
+        G = new Tuple<BigInteger, BigInteger>(BigInteger.Parse("55066263022277343669578718895168534326250603453777594175500187360389116729240"), BigInteger.Parse("32670510020758816978083085130507043184471273380659243275938904335757337482424"));
+    }
     //  public static BigInteger primeModulus = BigInteger.Pow(2, 256) - BigInteger.Pow(2, 32) - BigInteger.Pow(2, 9) - BigInteger.Pow(2, 8) - BigInteger.Pow(2, 7) - BigInteger.Pow(2, 6) - BigInteger.Pow(2, 4) - 1;
-    public static BigInteger primeModulus = BigInteger.Parse("115792089237316195423570985008687907853269984665640564039457584007908834671663");
-    public static byte[] GetPublicKeyNative(byte[] privateKey) {
-        // generator point (the starting point on the curve used for all calculations)
-        Tuple<BigInteger, BigInteger> G = new Tuple<BigInteger, BigInteger>(BigInteger.Parse("55066263022277343669578718895168534326250603453777594175500187360389116729240"), BigInteger.Parse("32670510020758816978083085130507043184471273380659243275938904335757337482424"));
+    public BigInteger primeModulus;
+    Tuple<BigInteger, BigInteger> G;
 
+    public Tuple<BigInteger, BigInteger> GetPublicKeyPoint(byte[] privateKey) {
         Array.Reverse(privateKey);
 
         var fullPrivateKey = new byte[33];
@@ -18,6 +20,13 @@ public class Sec256Calculator {
 
         var k = new BigInteger(fullPrivateKey);
         var publicKeyPoint = Multiply(k, G);
+        return publicKeyPoint;
+    }
+    public byte[] GetCompressedPublicKey(byte[] privateKey) {
+        // generator point (the starting point on the curve used for all calculations)
+
+
+        var publicKeyPoint = GetPublicKeyPoint(privateKey);
 
         var publicKeyArray = publicKeyPoint.Item1.ToByteArray();
         var compressed_public_key = new byte[33];
@@ -33,7 +42,7 @@ public class Sec256Calculator {
     }
 
 
-    public static BigInteger modInverse(BigInteger a, BigInteger n) {
+    public BigInteger modInverse(BigInteger a, BigInteger n) {
         BigInteger i = n, v = 0, d = 1;
         if(a < 0) {
             a = MyModulus(a, n);
@@ -51,7 +60,7 @@ public class Sec256Calculator {
         return v;
     }
 
-    public static BigInteger MyModulus(BigInteger k, BigInteger m) {
+    public BigInteger MyModulus(BigInteger k, BigInteger m) {
         BigInteger n;
         if(k >= 0) {
             n = (k / m);
@@ -61,7 +70,7 @@ public class Sec256Calculator {
         BigInteger y = k - m * n;
         return y;
     }
-    public static Tuple<BigInteger, BigInteger> Double(Tuple<BigInteger, BigInteger> point) {
+    public Tuple<BigInteger, BigInteger> Double(Tuple<BigInteger, BigInteger> point) {
 
         // # slope = (3x^2 + a) / 2y    a=0
 
@@ -84,7 +93,7 @@ public class Sec256Calculator {
         //# return x, y coordinates of point
         return new Tuple<BigInteger, BigInteger>(x, y);
     }
-    public static Tuple<BigInteger, BigInteger> Add(Tuple<BigInteger, BigInteger> point1, Tuple<BigInteger, BigInteger> point2) {
+    public Tuple<BigInteger, BigInteger> Add(Tuple<BigInteger, BigInteger> point1, Tuple<BigInteger, BigInteger> point2) {
 
         if(point1 == point2) {
             return Double(point1);
@@ -92,9 +101,9 @@ public class Sec256Calculator {
 
         //# slope = (y1 - y2) / (x1 - x2)
         //  slope = ((point1[:y] - point2[:y]) * modinv(point1[:x] - point2[:x])) % $p
-        var diffX = point1.Item1 - point2.Item1; 
+        var diffX = point1.Item1 - point2.Item1;
         var diffXMod = modInverse(diffX, primeModulus);
-        var diffY = point1.Item2 - point2.Item2; 
+        var diffY = point1.Item2 - point2.Item2;
         var sum = diffY * diffXMod;
 
         //  var slope = sum % primeModulus;
@@ -110,7 +119,7 @@ public class Sec256Calculator {
     }
 
 
-    public static Tuple<BigInteger, BigInteger> Multiply(BigInteger k, Tuple<BigInteger, BigInteger> point) {
+    public Tuple<BigInteger, BigInteger> Multiply(BigInteger k, Tuple<BigInteger, BigInteger> point) {
 
         var current = point;
 

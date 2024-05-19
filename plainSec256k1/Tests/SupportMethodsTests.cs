@@ -13,7 +13,7 @@ public class SupportMethodsTests
         BigInteger primeModulus = BigInteger.Parse("115792089237316195423570985008687907853269984665640564039457584007908834671663");
         BigInteger target = BigInteger.Parse("83174505189910067536517124096019359197644205712500122884473429251812128958118");
 
-        var result = Sec256Calculator.modInverse(input1, primeModulus);
+        var result = new Sec256Calculator().modInverse(input1, primeModulus);
 
         Assert.AreEqual(target, result);
     }
@@ -25,7 +25,7 @@ public class SupportMethodsTests
         BigInteger primeModulus = BigInteger.Parse("47");
         BigInteger target = BigInteger.Parse("29");
 
-        var result = Sec256Calculator.modInverse(input1, primeModulus);
+        var result = new Sec256Calculator().modInverse(input1, primeModulus);
 
         Assert.AreEqual(target, result);
     }
@@ -46,8 +46,8 @@ public class SupportMethodsTests
         var sumRuby2 = input1test * sumRuby; //-
         var sumCsharp2 = input1test * sumCsharp; //-
 
-        var slopeRuby = Sec256Calculator.MyModulus(sumRuby2, Sec256Calculator.primeModulus);
-        var slopeCsharp = Sec256Calculator.MyModulus(sumCsharp2, Sec256Calculator.primeModulus);
+        var slopeRuby = new Sec256Calculator().MyModulus(sumRuby2, new Sec256Calculator().primeModulus);
+        var slopeCsharp = new Sec256Calculator().MyModulus(sumCsharp2, new Sec256Calculator().primeModulus);
 
         //As you see while the modInverse returns different results for C# and ruby in some cases (don't know why) - the final results (slopeRuby and slopeCsharp) are equal. So decided to skip this riddle.
 
@@ -57,7 +57,7 @@ public class SupportMethodsTests
         BigInteger primeModulus = BigInteger.Parse("115792089237316195423570985008687907853269984665640564039457584007908834671663");
         BigInteger target = BigInteger.Parse("-10464606811927168450269177742698359003875668665547057887775726258014988875902");
 
-        var result = Sec256Calculator.modInverse(input1, primeModulus);
+        var result = new Sec256Calculator().modInverse(input1, primeModulus);
 
         Assert.AreEqual(target, result);
     }
@@ -69,7 +69,7 @@ public class SupportMethodsTests
         BigInteger input2 = BigInteger.Parse("115792089237316195423570985008687907853269984665640564039457584007908834671663");
         BigInteger target = BigInteger.Parse("91914383230618135761690975197207778399550061809281766160147273830617914855857");
 
-        var result = Sec256Calculator.MyModulus(input1, input2);
+        var result = new Sec256Calculator().MyModulus(input1, input2);
 
         Assert.AreEqual(target, result);
     }
@@ -83,7 +83,7 @@ public class SupportMethodsTests
         BigInteger target2 = BigInteger.Parse("12158399299693830322967808612713398636155367887041628176798871954788371653930");
 
         var targetPoint = new Tuple<BigInteger, BigInteger>(target1, target2);
-        var result = Sec256Calculator.Double(point);
+        var result = new Sec256Calculator().Double(point);
 
         Assert.AreEqual(targetPoint, result);
     }
@@ -100,7 +100,7 @@ public class SupportMethodsTests
         BigInteger target2 = BigInteger.Parse("25583027980570883691656905877401976406448868254816295069919888960541586679410");
 
         var targetPoint = new Tuple<BigInteger, BigInteger>(target1, target2);
-        var result = Sec256Calculator.Add(point1, point2);
+        var result = new Sec256Calculator().Add(point1, point2);
 
         Assert.AreEqual(targetPoint, result);
     }
@@ -119,7 +119,7 @@ public class SupportMethodsTests
         BigInteger target2 = BigInteger.Parse("39856815248295663243990443767776362321337592747889787217974905533720651000664");
 
         var targetPoint = new Tuple<BigInteger, BigInteger>(target1, target2);
-        var result = Sec256Calculator.Add(point1, pointG);
+        var result = new Sec256Calculator().Add(point1, pointG);
 
         Assert.AreEqual(targetPoint, result);
     }
@@ -137,7 +137,7 @@ public class SupportMethodsTests
         BigInteger target2 = BigInteger.Parse("25583027980570883691656905877401976406448868254816295069919888960541586679410");
 
         var targetPoint = new Tuple<BigInteger, BigInteger>(target1, target2);
-        var result = Sec256Calculator.Add(point1, pointG);
+        var result = new Sec256Calculator().Add(point1, pointG);
 
         Assert.AreEqual(targetPoint, result);
     }
@@ -150,7 +150,7 @@ public class SupportMethodsTests
         BigInteger target2 = BigInteger.Parse("25583027980570883691656905877401976406448868254816295069919888960541586679410");
 
         var targetPoint = new Tuple<BigInteger, BigInteger>(target1, target2);
-        var result = Sec256Calculator.Multiply(input1, point1);
+        var result = new Sec256Calculator().Multiply(input1, point1);
 
         Assert.AreEqual(targetPoint, result);
     }
@@ -164,7 +164,7 @@ public class SupportMethodsTests
         BigInteger target2 = BigInteger.Parse("98386217607324929854432842186271083758341411730506808463586570492533445740059");
 
         var targetPoint = new Tuple<BigInteger, BigInteger>(target1, target2);
-        var result = Sec256Calculator.Multiply(input1, point1);
+        var result = new Sec256Calculator().Multiply(input1, point1);
 
         Assert.AreEqual(targetPoint, result);
     }
