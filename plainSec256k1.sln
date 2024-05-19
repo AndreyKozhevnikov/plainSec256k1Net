@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plainSec256k1", "plainSec256k1\plainSec256k1.csproj", "{EF7BDCE9-DCB9-4C81-8AC1-B98C3129059D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "plainSec256k1", "plainSec256k1\plainSec256k1.csproj", "{EF7BDCE9-DCB9-4C81-8AC1-B98C3129059D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "plainSec256k1Tests", "plainSec256k1Tests\plainSec256k1Tests.csproj", "{84E071D0-5CC4-495A-9AA1-71741CE88196}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{EF7BDCE9-DCB9-4C81-8AC1-B98C3129059D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF7BDCE9-DCB9-4C81-8AC1-B98C3129059D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF7BDCE9-DCB9-4C81-8AC1-B98C3129059D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84E071D0-5CC4-495A-9AA1-71741CE88196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84E071D0-5CC4-495A-9AA1-71741CE88196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84E071D0-5CC4-495A-9AA1-71741CE88196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84E071D0-5CC4-495A-9AA1-71741CE88196}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

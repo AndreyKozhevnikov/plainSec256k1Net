@@ -81,6 +81,11 @@ public class Sec256Calculator {
         var x3 = 3 * BigInteger.Pow(point.Item1, 2); //++
         var y2 = BigInteger.Multiply(point.Item2, 2); //++
 
+      
+
+        //var fi = primeModulus - 2;
+        //var y2mod = BigInteger.ModPow(y2, fi, primeModulus);
+
         var y2mod = modInverse(y2, primeModulus);
 
         var r1 = x3 * y2mod;
@@ -105,6 +110,10 @@ public class Sec256Calculator {
         //# slope = (y1 - y2) / (x1 - x2)
         //  slope = ((point1[:y] - point2[:y]) * modinv(point1[:x] - point2[:x])) % $p
         var diffX = point1.Item1 - point2.Item1;
+
+        //var fi = primeModulus - 2;
+        //var diffXMod = BigInteger.ModPow(diffX, fi, primeModulus);
+
         var diffXMod = modInverse(diffX, primeModulus);
         var diffY = point1.Item2 - point2.Item2;
         var sum = diffY * diffXMod;

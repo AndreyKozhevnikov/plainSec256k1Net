@@ -168,5 +168,37 @@ public class SupportMethodsTests
 
         Assert.AreEqual(targetPoint, result);
     }
+
+
+    [Test]
+    public void CheckModInverseTime() {
+        Sec256Calculator calculator = new Sec256Calculator();
+        var r = new Random(DateTime.Now.Millisecond);
+        for (int i = 0; i < 1000000; i++) {
+            byte[] bytes = new byte[9];
+            r.NextBytes(bytes);
+            bytes[bytes.Length - 1] &= (byte)0x7F;
+            var cand = new BigInteger(bytes);
+
+            var res = calculator.modInverse(cand, calculator.primeModulus);
+
+        }
+    }
+    [Test]
+    public void CheckModPowTime() {
+        Sec256Calculator calculator = new Sec256Calculator();
+        var r = new Random(DateTime.Now.Millisecond);
+        for(int i = 0; i < 1000000; i++) {
+            byte[] bytes = new byte[9];
+            r.NextBytes(bytes);
+            bytes[bytes.Length - 1] &= (byte)0x7F;
+            var cand = new BigInteger(bytes);
+            var fi = calculator.primeModulus - 2;
+            var y2mod = BigInteger.ModPow(cand, fi, calculator.primeModulus);
+           // var res = calculator.modInverse(cand, calculator.primeModulus);
+
+        }
+    }
+
 }
 
