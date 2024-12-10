@@ -185,6 +185,7 @@ public class SupportMethodsTests
         }
     }
     [Test]
+    [Ignore("heavy")]
     public void CheckModPowTime() {
         Sec256Calculator calculator = new Sec256Calculator();
         var r = new Random(DateTime.Now.Millisecond);

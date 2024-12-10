@@ -202,34 +202,45 @@ public class Tests {
         Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st);
     }
 
-    //[Test]
-    //public void TestDelete() {
-    //    byte[] intBytes = BitConverter.GetBytes(3);
+    [Test]
+    public void TestDelete() {
+        //byte[] intBytes = BitConverter.GetBytes(3);
 
 
-    //    Array.Reverse(intBytes);
-    //    byte[] privateKeyBytes = new byte[32];
-    //    var dest = 32 - intBytes.Length;
-    //    Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
-    //    var calc = new Sec256Calculator();
+        //Array.Reverse(intBytes);
+        //byte[] privateKeyBytes = new byte[32];
+        //var dest = 32 - intBytes.Length;
+        //Array.Copy(intBytes, 0, privateKeyBytes, dest, intBytes.Length);
+        var calc = new Sec256Calculator();
+        var points =new  uint[64];
+        for(int i = 0; i < 64; i++) {
+            byte[] intBytes = BitConverter.GetBytes(i+1);
 
-    //    var st0 = calc.Add(calc.G, calc.G);
-    //    var st1 = calc.Add(st0, calc.G);
-    //    var st2 = calc.Add(st1, calc.G);
-    //    var st3 = calc.Add(st2, calc.G);
+            byte[] privateKeyBytes = new byte[32];
+            Array.Copy(intBytes, privateKeyBytes, intBytes.Length);
+
+            var pt = new Sec256Calculator().GetPublicKeyPoint(privateKeyBytes);
+
+            var bites = pt.Item2.ToString("X");
+            var lastpart = bites.Substring(bites.Length-8, 8);
+            uint intValue = Convert.ToUInt32("0x"+lastpart,16);
+
+            points[i] = intValue;
+        }
 
 
 
 
-    //    var res0 = calc.GetPublicKeyPoint(privateKeyBytes);
-    //    var res = calc.GetCompressedPublicKeyFromPoint(res0);
+
+        //var res0 = calc.GetPublicKeyPoint(privateKeyBytes);
+        //var res = calc.GetCompressedPublicKeyFromPoint(res0);
 
 
-    //    var compressed_public_key_st = Convert.ToHexString(res).ToLower();
+        var compressed_public_key_st = "test";
 
 
-    //    Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st);
-    //}
+        Assert.AreEqual("02f9308a019258c31049344f85f89d5229b531c845836f99b08601f113bce036f9", compressed_public_key_st);
+    }
     [Test]
     public void GetPublicKeyWithNative_10() {
         byte[] intBytes = BitConverter.GetBytes(4);
